@@ -15,6 +15,8 @@ export class PostsListComponent implements OnInit {
   filteredPosts: any[] = [];
   Pesquisar = '';
   loading = true;
+  selectPost: any = true;
+  isModalOpen = false;
 
   constructor(private postsService: PostsService) {}
 
@@ -36,5 +38,18 @@ export class PostsListComponent implements OnInit {
         post.title.toLowerCase().includes(term) ||
         post.body.toLowerCase().includes(term)
     );
+  }
+  openEditarModal(post: any) {
+    this.selectPost = { ...post };
+    this.isModalOpen = true;
+  }
+  closeModal() {
+    this.isModalOpen = false;
+    this.selectPost = null;
+  }
+
+  savePost() {
+    this.postsService.updatePost(this.selectPost);
+    this.closeModal();
   }
 }

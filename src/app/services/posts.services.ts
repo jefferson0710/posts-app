@@ -20,4 +20,11 @@ export class PostsService {
   getPosts() {
     return this.posts$;
   }
+
+  updatePost(updatedPost: Post): any {
+    const posts = this.postsSubject.value.map((post) =>
+      post.id === updatedPost.id ? updatedPost : post
+    );
+    this.postsSubject.next(posts);
+  }
 }
