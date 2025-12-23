@@ -27,4 +27,10 @@ export class PostsService {
     );
     this.postsSubject.next(posts);
   }
+
+  deletePostLocal(id: number) {
+    const updatedPosts = this.postsSubject.value.filter((p) => p.id !== id);
+
+    this.postsSubject.next(updatedPosts);
+  }
 }

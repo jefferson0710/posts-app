@@ -12,12 +12,16 @@
   </button>
 </div>
 
+    <div *ngIf="searchMessage" class="text-center text-black mb-4 font-semibold">
+      {{ searchMessage }}
+</div>
+
     <div *ngIf="loading" class="text-center text-gray-500">
 
     </div>
 
     <div class="space-y-4" *ngIf="!loading">
-      <div *ngFor="let post of filteredPosts" class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
+      <div *ngFor="let post of paginatedPosts" class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
         <h2 class="text-xl font-semibold text-gray-800 mb-2">
           {{ post.title }}
         </h2>
@@ -33,7 +37,7 @@
           </button>
 
           <button
-            class="px-4 py-2 text-sm rounded bg-red-600 text-white hover:bg-red-700">
+            class="px-4 py-2 text-sm rounded bg-red-600 text-white hover:bg-red-700" (click)="deleteModal(post)">
             Excluir
           </button>
         </div>
@@ -42,7 +46,27 @@
     </div>
 
   </div>
+  <div class="flex justify-center items-center gap-4 mt-6 bg-gray-100">
+  <button class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400 disabled:opacity-50 font-semibold"(click)="prevPage()"[disabled]="currentPage === 1"
+  >
+    Anterior
+  </button>
+
+  <span class="text-sm font-medium bg-gray-100">
+    Página {{ currentPage }} de {{ totalPages }}
+  </span>
+
+  <button
+    class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400 disabled:opacity-50 font-semibold"
+    (click)="nextPage()"
+    [disabled]="currentPage === totalPages"
+  >
+    Próxima
+  </button>
 </div>
+
+</div>
+
 <div
   *ngIf="isModalOpen"
   class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
@@ -55,21 +79,19 @@
 
     <div class="mb-4">
       <label class="block text-sm font-medium mb-1">Título</label>
-      <input
-        type="text"
-        class="w-full border rounded px-3 py-2"
+      <input type="text"class="w-full border rounded px-3 py-2" [(ngModel)]="selectPost.title"
       />
     </div>
     <div class="mb-4">
       <label class="block text-sm font-medium mb-1">Texto</label>
-      <textarea rows="5"class="w-full border rounded px-3 py-2"></textarea>
+      <textarea rows="5"class="w-full border rounded px-3 py-2"  [(ngModel)]="selectPost.body" ></textarea>
     </div>
 
     <div class="flex justify-end gap-2">
-      <button class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 bold"(click)="isModalOpen = false">
+      <button class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 text-base"(click)="closeModal()">
         Cancelar
       </button>
-      <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" (click)="savePost">
+      <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-base" (click)="savePost()">
         Salvar
       </button>
     </div>
