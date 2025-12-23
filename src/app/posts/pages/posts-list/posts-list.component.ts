@@ -98,12 +98,14 @@ export class PostsListComponent implements OnInit {
   nextPage() {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
+      this.updatePagination();
     }
   }
 
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
+      this.updatePagination();
     }
   }
   calculateTotalPages() {
