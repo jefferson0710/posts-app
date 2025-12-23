@@ -26,7 +26,16 @@ export class PostsListComponent implements OnInit {
   paginatedPosts: any[] = [];
 
   constructor(private postsService: PostsService) {}
-
+  /**Inicializa o componente carregando os posts do service e
+   * configurando a paginação inicial.
+   *Métodos principais:
+   * - search(): filtra os posts localmente por título ou conteúdo.
+   * - openEditarModal(): abre o modal preenchendo os dados do post selecionado.
+   * - savePost(): envia o post editado para o service atualizar o estado global.
+   * - deleteModal(): confirma a exclusão e remove o post localmente.
+   * - updatePagination(), nextPage(), prevPage(), calculateTotalPages(): gerenciam a paginação dos posts exibidos.
+   *Esses métodos manipulam apenas a camada de apresentação, delegando a lógica de dados ao service.
+   */
   ngOnInit() {
     this.postsService.getPosts().subscribe((posts) => {
       this.posts = posts;
