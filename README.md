@@ -1,27 +1,81 @@
-# PostsApp
+#  Gerenciamento de Posts – Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+Aplicação desenvolvida em **Angular** que consome uma API pública para  gerenciamento de Posts e Comentários.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+##  Objetivo do Projeto
 
-## Code scaffolding
+Demonstrar domínio dos principais conceitos do Angular, incluindo:
+- Arquitetura de aplicação
+- Consumo de API REST
+- CRUD completo
+- Uso adequado de Services e RxJS
+- Paginação, busca e modais
+- Tratamento de estados de carregamento e erro
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Requisitos Implementados
+-  Consumo da API pública: https://jsonplaceholder.typicode.com/posts
+-  CRUD de Posts (Criar, Listar, Editar, Excluir)
+-  Modal para criação e edição de Posts
+-  Confirmação antes da exclusão
+-  Busca por título e conteúdo
+-  Paginação da listagem de Posts
+-  Cache local em memória
+-  Tratamento de loading e estados vazios
+-  Estilização com Tailwind CSS
+-  Código tipado e organizado
+-  Separação de responsabilidades (Component x Service)
 
-## Build
+-  ## Arquitetura Escolhida
+  
+A aplicação segue uma arquitetura baseada em responsabilidades:
+- **Components**  
+  Responsáveis pela lógica de interface e interação com o usuário.
+- **Services**  
+  Centralizam o acesso à API e a lógica de dados (CRUD), evitando duplicação de código.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+  ## Decisões Técnicas
+  
+- **API JSONPlaceholder**
+  - Não persiste dados.
+  - Foi utilizado cache local em memória para simular comportamento real de CRUD.
+- **Paginação no frontend**
+  - A API não oferece paginação real.
+  - Implementação feita via controle local dos arrays.
+- **RxJS de forma objetiva**
+  - Uso de subscribe apenas quando necessário.
+  - Mantido simples para atender o escopo do desafio.
+  - 
+As decisões priorizam clareza, simplicidade e entrega funcional.
 
-## Running unit tests
+## Como Rodar o Projeto
+### Pré-requisitos
+- Node.js (LTS)
+- Angular CLI
+### Passos
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+# Clonar o repositório
+git clone <url-do-repositorio>
 
-## Running end-to-end tests
+# Entrar na pasta do projeto
+cd nome-do-projeto
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Instalar dependências
+npm install
 
-## Further help
+# Rodar a aplicação
+ng serve
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Acesse no navegador:
+http://localhost:4200
+```
+## Como Testar
+
+- Visualizar a listagem inicial de posts
+- Utilizar o campo de busca por título ou conteúdo
+- Navegar entre páginas
+- Editar um post existente
+- Excluir um post com confirmação
+- Validar atualização imediata da interface
