@@ -46,7 +46,6 @@ A aplicação segue uma arquitetura baseada em responsabilidades:
 - **RxJS de forma objetiva**
   - Uso de subscribe apenas quando necessário.
   - Mantido simples para atender o escopo do desafio.
-  - 
 As decisões priorizam clareza, simplicidade e entrega funcional.
 
 ## Como Rodar o Projeto
